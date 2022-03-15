@@ -36,11 +36,17 @@ const ExportModal = () => {
     isSinglePDF ? setLoadingSingle(true) : setLoadingMulti(true);
 
     try {
-      const printResume = firebase.functions().httpsCallable('printResume');
+      const FirebaseFunctionsInstance = firebase.functions();
+      FirebaseFunctionsInstance.useEmulator('localhost', 5001);
+
+      const printResume =
+        FirebaseFunctionsInstance.httpsCallable('printResume');
+
       const { data } = await printResume({
         id: state.id,
         type: isSinglePDF ? 'single' : 'multi',
       });
+
       const blob = b64toBlob(data, 'application/pdf');
       download(blob, `RxResume-${state.id}.pdf`, 'application/pdf');
     } catch (error) {

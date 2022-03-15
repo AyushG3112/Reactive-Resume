@@ -4,7 +4,7 @@ const puppeteer = require('puppeteer');
 
 admin.initializeApp();
 
-const BASE_URL = 'https://rxresu.me/r/';
+const BASE_URL = 'http://localhost:8000/r/';
 
 function timeout(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -188,6 +188,10 @@ const printResumeFunctionHandler = async ({ id, type }, { auth }) => {
       pdf = await page.pdf({
         format: 'A4',
         printBackground: true,
+        margin: {
+          top: '30px',
+          bottom: '30px',
+        },
       });
     }
 

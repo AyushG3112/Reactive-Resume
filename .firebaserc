@@ -1,9 +1,9 @@
 {
   "projects": {
-    "default": "rx-resume"
+    "default": "reactive-resume-a3b44"
   },
   "targets": {
-    "rx-resume": {
+    "reactive-resume-a3b44": {
       "hosting": {
         "rxresume": [
           "public"
